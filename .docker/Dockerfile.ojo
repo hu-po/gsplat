@@ -17,10 +17,10 @@ COPY . /workspace/gsplat
 WORKDIR /workspace/gsplat
 
 # Install Python dependencies
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r examples/requirements.txt
 
 # Install gsplat package
-RUN pip3 install --no-cache-dir .
+RUN TORCH_CUDA_ARCH_LIST="8.6" pip3 install --no-cache-dir .
 
 # Make the benchmark script executable
 RUN chmod +x benchmarks/basic.sh
