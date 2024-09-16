@@ -11,20 +11,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install gsplat from GitHub
-RUN unset TORCH_CUDA_ARCH_LIST
-RUN pip install git+https://github.com/nerfstudio-project/gsplat.git
+# RUN export TORCH_CUDA_ARCH_LIST="8.6"
+# RUN pip install git+https://github.com/nerfstudio-project/gsplat.git
 
-# # Copy the local gsplat repository into the Docker image
-# COPY . /workspace/gsplat
+# Copy the local gsplat repository into the Docker image
+COPY . /workspace/gsplat
 
-# # Change working directory to gsplat
-# WORKDIR /workspace/gsplat
+# Change working directory to gsplat
+WORKDIR /workspace/gsplat
 
 # # Install Python dependencies
 # RUN pip install --no-cache-dir -r examples/requirements.txt
 
 # # Install gsplat package
-# RUN TORCH_CUDA_ARCH_LIST="8.6" pip3 install --no-cache-dir .
+RUN TORCH_CUDA_ARCH_LIST="8.6" pip install --no-cache-dir .
 
 # Make the benchmark script executable
 RUN chmod +x benchmarks/basic.sh
