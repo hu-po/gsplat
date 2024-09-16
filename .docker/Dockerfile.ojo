@@ -11,6 +11,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install gsplat from GitHub
+RUN unset TORCH_CUDA_ARCH_LIST
 RUN pip install git+https://github.com/nerfstudio-project/gsplat.git
 
 # # Copy the local gsplat repository into the Docker image
