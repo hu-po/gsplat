@@ -1,5 +1,5 @@
 # Use NVIDIA L4T base image (ARM64)
-FROM nvcr.io/nvidia/l4t-pytorch:r35.2.1-pth2.0-py3
+FROM nvcr.io/nvidia/l4t-pytorch:latest
 
 # Set the working directory
 WORKDIR /workspace
