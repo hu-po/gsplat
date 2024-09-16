@@ -1,0 +1,29 @@
+# Use NVIDIA L4T base image (ARM64)
+FROM nvcr.io/nvidia/l4t-pytorch:r35.2.1-pth2.0-py3
+
+# Set the working directory
+WORKDIR /workspace
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git wget && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the local gsplat repository into the Docker image
+COPY . /workspace/gsplat
+
+# Change working directory to gsplat
+WORKDIR /workspace/gsplat
+
+# Install Python dependencies
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Install gsplat package
+RUN pip3 install --no-cache-dir .
+
+# Make the benchmark script executable
+RUN chmod +x benchmarks/basic.sh
+
+# Set the entrypoint to run the benchmark
+ENTRYPOINT ["bash", "benchmarks/basic.sh"]
