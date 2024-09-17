@@ -20,6 +20,8 @@ WORKDIR /workspace/gsplat
 RUN TORCH_CUDA_ARCH_LIST="8.6" pip install --no-cache-dir .
 
 # Install the requirements for the benchmark script
+RUN pip install jaxtyping==0.2.19
+RUN pip install nerfview==0.0.2
 RUN TORCH_CUDA_ARCH_LIST="8.6" pip install -r examples/requirements.txt
 
 # Make the benchmark script executable
