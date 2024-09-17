@@ -21,3 +21,6 @@ RUN TORCH_CUDA_ARCH_LIST="8.6" pip install --no-cache-dir .
 
 # Make the benchmark script executable
 RUN chmod +x examples/benchmarks/basic.sh
+
+# Set the entrypoint to the benchmark script
+ENTRYPOINT [ "bash", "examples/benchmarks/basic.sh" ]
