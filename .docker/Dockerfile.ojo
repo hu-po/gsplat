@@ -19,6 +19,9 @@ WORKDIR /workspace/gsplat
 # Install gsplat package
 RUN TORCH_CUDA_ARCH_LIST="8.6" pip install --no-cache-dir .
 
+# Install the requirements for the benchmark script
+RUN pip install -r examples/requirements.txt
+
 # Make the benchmark script executable
 RUN chmod +x examples/benchmarks/basic.sh
 
